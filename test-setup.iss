@@ -9,10 +9,15 @@
 ;   Определяем некоторые константы
 ;------------------------------------------------------------------------------
 
+; Имя приложения
 #define   Name       "Miramishi Painter"
+; Версия приложения
 #define   Version    "0.0.1"
+; Фирма-разработчик
 #define   Publisher  "Miramishi"
+; Сафт фирмы разработчика
 #define   URL        "http://www.miramishi.com"
+; Имя исполняемого модуля
 #define   ExeName    "Miramishi.exe"
 
 ;------------------------------------------------------------------------------
@@ -52,8 +57,8 @@ SolidCompression=yes
 ;   Устанавливаем языки для процесса установки
 ;------------------------------------------------------------------------------
 [Languages]
-Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
+Name: "english"; MessagesFile: "compiler:Default.isl"; LicenseFile: "License_ENG.txt"
+Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"; LicenseFile: "License_RUS.txt"
 
 ;------------------------------------------------------------------------------
 ;   Опционально - некоторые задачи, которые надо выполнить при установке
@@ -83,3 +88,5 @@ Source: "E:\work\Mirami\Mirami\bin\Release\*"; DestDir: "{app}"; Flags: ignoreve
 Name: "{group}\{#Name}"; Filename: "{app}\{#ExeName}"
 
 Name: "{commondesktop}\{#Name}"; Filename: "{app}\{#ExeName}"; Tasks: desktopicon
+
+#include "dotnet.pas"
