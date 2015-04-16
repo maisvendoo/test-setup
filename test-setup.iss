@@ -79,6 +79,8 @@ Source: "E:\work\Mirami\Mirami\bin\Release\Miramishi.exe"; DestDir: "{app}"; Fla
 ; Прилагающиеся ресурсы
 Source: "E:\work\Mirami\Mirami\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
+; .NET Framework 4.0
+Source: "E:\install\dotNetFx40_Full_x86_x64.exe"; DestDir: "{tmp}"; Flags: deleteafterinstall; Check: not IsRequiredDotNetDetected
 
 ;------------------------------------------------------------------------------
 ;   Указываем установщику, где он должен взять иконки
@@ -89,4 +91,14 @@ Name: "{group}\{#Name}"; Filename: "{app}\{#ExeName}"
 
 Name: "{commondesktop}\{#Name}"; Filename: "{app}\{#ExeName}"; Tasks: desktopicon
 
+;------------------------------------------------------------------------------
+;   Секция кода включенная из отдельного файла
+;------------------------------------------------------------------------------
+[Code]
 #include "dotnet.pas"
+
+[Run]
+;------------------------------------------------------------------------------
+;   Секция запуска после инсталляции
+;------------------------------------------------------------------------------
+Filename: {tmp}\dotNetFx40_Full_x86_x64.exe; Parameters: "/q:a /c:""install /l /q"""; Check: not IsRequiredDotNetDetected; StatusMsg: Microsoft Framework 4.0 is installed. Please wait...
